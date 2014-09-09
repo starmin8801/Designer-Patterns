@@ -36,8 +36,13 @@ void Delete(void *_class) {
     free(_class);
 }
 
-void *CreateProduct(const void *_factory, int productType) {
-    return ((const _Factory*)Factory)->createProduct(_factory, productType);
+void *CreateProduct(const void *_factory) {
+    const Factory * const *factory = _factory;
+    if (_factory && *factory && (*factory)->createProduct) {
+        return (*factory)->createProduct(_factory);
+    } else {
+        return NULL;
+    }
 }
 
 void Show(const void *_product) {

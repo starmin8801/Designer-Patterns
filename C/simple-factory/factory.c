@@ -27,10 +27,10 @@ static void* factoryCreateProduct(const void *_self, int productType) {
     
     switch(productType) {
         case PRODUCT_A:
-            product = NewFactory(ProductA);
+            product = New(ProductA);
             break;
         case PRODUCT_B:
-            product = NewFactory(ProductB);
+            product = New(ProductB);
             break;
         default:
             break;

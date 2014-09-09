@@ -2,7 +2,7 @@
 #include "factory.h"
 
 int main(int argc, char *argv[]) {
-    void *fac = NewFactory(Factory);
+    void *fac = New(Factory);
 
     void *pro1 = CreateProduct(fac, 0);
     void *pro2 = CreateProduct(fac, 1);
