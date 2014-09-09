@@ -21,7 +21,7 @@ static void *concreteClass1Ctor(void *_self, va_list *params) {
 static void *concreteClass1Dtor(void *_self) {
     _ConcreteClass1 *self = _self;
 
-    if (NULL != (*(AbstractClass *)self)->description) {
+    if (NULL != (*(AbstractClass **)self)->description) {
         free((*(AbstractClass **)self)->description);
         (*(AbstractClass **)self)->description = NULL;
     }

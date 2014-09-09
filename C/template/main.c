@@ -9,5 +9,8 @@ int main(int argc, char *argv[]) {
     TemplateMethod(p1);
     TemplateMethod(p2); 
 
+    Delete(p1);
+    Delete(p2);
+    
     return 0;
 }
