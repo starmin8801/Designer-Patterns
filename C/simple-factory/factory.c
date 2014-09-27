@@ -5,11 +5,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-enum PRODUCT_TYPE {
-    PRODUCT_A,
-    PRODUCT_B
-};
-
 static void *factoryCtor(void *_self, va_list *params) {
     _Factory *self = _self;
 
@@ -22,7 +17,7 @@ static void *factoryDtor(void *_self) {
     return self;
 }
 
-static void* factoryCreateProduct(const void *_self, int productType) {
+static void* factoryCreateProduct(const void *_self, PRODUCT_TYPE productType) {
     void *product = NULL;
     
     switch(productType) {

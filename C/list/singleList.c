@@ -1,4 +1,5 @@
 #include "list.h"
+#include "singleList.h"
 #include "new.h"
 #include <stdlib.h>
 
@@ -23,11 +24,11 @@ static void *singleListDtor(void *_self) {
     return self;    
 }
 
-static void singleListInsert(void *_self, void *data) {
-    _SingleList *self = _self;
+static void singleListInsert(const void *_self, void *data) {
+    const _SingleList *self = _self;
     Node *node = (Node*)calloc(1, sizeof(Node));
 
-    Node **p = &self->head;
+    Node **p = (Node **)&self->head;
     for (; (*p) != NULL; p = &(*p)->next) {
         ;
     }
@@ -37,9 +38,9 @@ static void singleListInsert(void *_self, void *data) {
     *p = node;
 }
 
-static void singleListRemove(void *_self, void *data) {
-    _SingleList *self = _self;
-    Node **p = &self->head;
+static void singleListRemove(const void *_self, void *data) {
+    const _SingleList *self = _self;
+    Node **p = (Node **)&self->head;
 
     while ((*p) != NULL) {
         Node *node = *p;
@@ -51,8 +52,20 @@ static void singleListRemove(void *_self, void *data) {
     }
 }
 
-static void singleListPrint(void *_self, Print_FN print_fn) {
-    _SingleList *self = _self;
+static void singleListIterator(const void *_self, Handle_FN handle_fn, va_list *params) {
+    const _SingleList *self = _self;
+    Node **p = &self->head->next;
+
+    for (; (*p) != NULL; p = &(*p)->next) {
+        va_list args;
+        va_copy(args, *params);        
+        handle_fn((*p)->data, &args);
+        va_end(args);
+    }
+}
+
+static void singleListPrint(const void *_self, Print_FN print_fn) {
+    const _SingleList *self = _self;
     Node **p = &self->head->next;
 
     while ((*p) != NULL) {
@@ -61,14 +74,14 @@ static void singleListPrint(void *_self, Print_FN print_fn) {
     }    
 }
 
-static _SingleList _singleList = {
+static const List _singleList = {
     sizeof(_SingleList),
     singleListCtor,
     singleListDtor,
     singleListInsert,
     singleListRemove,
+    singleListIterator,
     singleListPrint,
-    NULL
 };
 
 const void *SingleList = &_singleList;

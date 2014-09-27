@@ -25,7 +25,7 @@ static void *csingletonCreateInstance(void *_self) {
     return self;
 }
 
-static const _CSingleton _csingleton = {
+static _CSingleton _csingleton = {
     csingletonCtor, csingletonDtor, csingletonCreateInstance, NULL
 };
 

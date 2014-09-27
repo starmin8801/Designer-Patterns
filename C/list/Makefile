@@ -1,4 +1,4 @@
 all:
-	gcc -o list main.c new.c list.c -g
+	gcc -o singleList main.c new.c singleList.c -g
 clean:
-	-rm -rf list *.o *~ \#* *.dSYM
+	-rm -rf singleList *.o *~ \#* *.dSYM
