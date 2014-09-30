@@ -2,6 +2,8 @@
 #include "abstractClass.h"
 #include "singleList.h"
 #include "abstractFlyweightFactory.h"
+#include "flyweight.h"
+#include "concreteFlyweight.h"
 #include "flyweightFactory.h"
 #include <assert.h>
 
@@ -64,4 +66,12 @@ void Print(void *_list, Print_FN print_fn) {
 
 void *GetFlyweight(const void *_factory, const char *_key) {
     return ((const AbstractFlyweightFactory*)FlyweightFactory)->getFlyweight(_factory, _key);
+}
+
+void Operation(void *_flyweight, char *_extrinsicState) {
+    Flyweight **flyweight = _flyweight;
+
+    if (_flyweight && *flyweight && (*flyweight)->operation) {
+        (*flyweight)->operation(_flyweight, _extrinsicState);
+    }
 }

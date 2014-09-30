@@ -11,5 +11,6 @@ void Iterator(const void *list, Handle_FN handle_fn, ...);
 void *Find(const void *_list, Find_FN Find_FN, ...);
 void Print(void *_list, Print_FN print_fn);
 void *GetFlyweight(const void *_factory, const char *_key);
+void Operation(void *_flyweight, char *_extrinsicState);
 
 #endif

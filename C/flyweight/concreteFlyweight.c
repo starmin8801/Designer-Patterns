@@ -23,7 +23,7 @@ static void *concreteFlyweightDtor(void *_self) {
 static void concreteFlyweightOperation(void *_self, char *_extrinsicState) {
     _ConcreteFlyweight *self = _self;
 
-    fprintf(stdout, "内部[%s] 外部[%s]", self->intrinsicState, _extrinsicState);
+    fprintf(stdout, "内部[%s] 外部[%s]\n", self->intrinsicState, _extrinsicState);
 }
 
 static char *concreteFlyweightGetIntrinsicState(const void *_self) {
