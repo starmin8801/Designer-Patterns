@@ -10,7 +10,6 @@ static void *originatorCtor(void *_self, va_list *params) {
     _Originator *self = _self;
 
     self->sdt = va_arg(*params, char*);
-    self->memento = 0;
 
     return self;
 }
@@ -19,7 +18,6 @@ static void *originatorDtor(void *_self) {
     _Originator *self = _self;
 
     self->sdt = NULL;
-    self->memento = 0;
 
     return self;    
 }
